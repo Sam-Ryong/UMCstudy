@@ -13,18 +13,15 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Store extends BaseEntity {
+public class ReviewImage extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String image_url;
 
-    private String address;
-
-    private Float score;
-
-    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
-    private List<Review> reviewList = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "review_id")
+    private Review review;
 }
